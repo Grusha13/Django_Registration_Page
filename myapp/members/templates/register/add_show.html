@@ -1,0 +1,48 @@
+{% extends 'register/index.html'%}
+{% block content %}
+ <div class="row">
+    <div class="col-sm-4">
+        <h4 class="text-center alert alert-info">Sign Up</h4>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-success" value="Add">
+        </form>
+    </div>
+    <div class="col-sm-7 offset-1">
+        <h4 class="text-center alert alert-info">
+            Show User Information
+        </h4>
+        {% if disp %}
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Password</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for d in disp %}
+              <tr>
+                <th scope="row">{{d.id}}</th>
+                <td>{{d.firstname}}</td>
+                <td>{{d.lastname}}</td>
+                <td>{{d.email}}</td>
+                <td>{{d.contact}}</td>
+                <td>{{d.password}}</td>
+                <td></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+        {% else %}
+        <h4 class="text-center alert alert-white">No Record Found</h4>
+        {% endif %}
+    </div>
+ </div>
+{% endblock content %}
